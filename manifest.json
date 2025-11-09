@@ -1,0 +1,71 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+
+    "manifest_version": 3,
+    "name": "Story Saver",
+    "version": "2.9.29",
+    "description": "Simply Download & Save stories from Facebook, Instagram, and WhatsApp.",
+    "icons": {
+        "16": "icons/icon_16.png",
+        "48": "icons/icon_48.png",
+        "128": "icons/icon_128.png"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_icon": "icons/icon_32.png"
+    },
+    "permissions": [
+        "declarativeContent",
+        "downloads",
+        "scripting",
+        "storage",
+        "tabs"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "*://*.instagram.com/*"
+
+
+            ],
+            "js": [
+                "content_scripts/instagramdowhand.js"
+
+            ],
+            "css": [
+                "css/fonts.css",
+                "css/styles.css"
+            ],
+            "run_at": "document_idle",
+            "all_frames": true
+        },
+
+        {
+            "matches": [
+
+                "*://*.facebook.com/*"
+
+            ],
+            "js": [
+
+                "content_scripts/facebook-video.js"
+            ],
+            "css": [
+                "css/fonts.css",
+                "css/styles.css"
+            ],
+            "run_at": "document_idle",
+            "all_frames": true
+        }
+    ],
+    "host_permissions": [
+        "*://*.instagram.com/*",
+        "*://*.facebook.com/*",
+        "*://*.whatsapp.com/*",
+        "*://*.fbcdn.net/*",
+        "*://*.zework.com/*"
+    ]
+}

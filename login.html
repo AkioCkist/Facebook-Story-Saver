@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Authentication Handler</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fafafa;
+      color: #262626;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+    .container {
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    .spinner {
+      margin: 20px auto;
+      width: 40px;
+      height: 40px;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #7932bf;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .message {
+      margin: 20px 0;
+      font-size: 16px;
+    }
+    .success {
+      color: #32CD32;
+    }
+    .error {
+      color: #ed4956;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div id="spinner" class="spinner"></div>
+  <div id="message" class="message">Processing authentication...</div>
+</div>
+
+<script>
+  // Function to process auth token and pass to extension
+  function processAuthToken(token) {
+    // Store token in extension storage
+    chrome.storage.sync.set({ 'auth_token': token }, function() {
+      console.log('Auth token stored in extension storage');
+
+      // Notify the background script about successful authentication
+      chrome.runtime.sendMessage({
+        action: "auth_success",
+        token: token
+      }, function(response) {
+        document.getElementById('spinner').style.display = 'none';
+        document.getElementById('message').textContent = 'Authentication successful. You can now close this window.';
+        document.getElementById('message').classList.add('success');
+
+        // Close window after a delay
+        setTimeout(function() {
+          window.close();
+        }, 3000);
+      });
+    });
+  }
+
+  // Process token from URL as soon as page loads
+  document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+
+    if (token) {
+      // We have a token, process it
+      console.log('Token found in URL');
+      processAuthToken(token);
+    } else {
+      // No token found, show error
+      document.getElementById('spinner').style.display = 'none';
+      document.getElementById('message').textContent = 'No authentication token found in URL.';
+      document.getElementById('message').classList.add('error');
+    }
+  });
+</script>
+</body>
+</html>

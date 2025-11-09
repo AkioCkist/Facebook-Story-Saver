@@ -1,0 +1,42 @@
+@font-face {
+    font-family: 'SF UI Display';
+    src: url('chrome-extension://__MSG_@@extension_id__/fonts/SFUIText-Regular.eot');
+    src: local('SF UI Text Regular'), local('SFUIText-Regular'),
+    url('chrome-extension://__MSG_@@extension_id__/fonts/SFUIText-Regular.eot?#iefix') format('embedded-opentype'),
+    url('chrome-extension://__MSG_@@extension_id__/fonts/SFUIText-Regular.woff') format('woff'),
+    url('chrome-extension://__MSG_@@extension_id__/fonts/SFUIText-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'SF UI Display';
+    src: url('chrome-extension://__MSG_@@extension_id__/fonts/SFUIText-Bold.eot');
+    src: local('SF UI Text Bold'), local('SFUIText-Bold'),
+    url('chrome-extension://__MSG_@@extension_id__/fonts/SFUIText-Bold.eot?#iefix') format('embedded-opentype'),
+    url('chrome-extension://__MSG_@@extension_id__/fonts/SFUIText-Bold.woff') format('woff'),
+    url('chrome-extension://__MSG_@@extension_id__/fonts/SFUIText-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'OpenSans';
+    src: url('chrome-extension://__MSG_@@extension_id__/fonts/OpenSans-Regular.eot?#iefix') format('embedded-opentype'),
+         url('chrome-extension://__MSG_@@extension_id__/fonts/OpenSans-Regular.woff') format('woff'),
+         url('chrome-extension://__MSG_@@extension_id__/fonts/OpenSans-Regular.ttf')  format('truetype'),
+         url('chrome-extension://__MSG_@@extension_id__/fonts/OpenSans-Regular.svg#OpenSans-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'OpenSans';
+    src: url('chrome-extension://__MSG_@@extension_id__/fonts/OpenSans-Bold.eot?#iefix') format('embedded-opentype'),
+         url('chrome-extension://__MSG_@@extension_id__/fonts/OpenSans-Bold.woff') format('woff'),
+         url('chrome-extension://__MSG_@@extension_id__/fonts/OpenSans-Bold.ttf')  format('truetype'),
+         url('chrome-extension://__MSG_@@extension_id__/fonts/OpenSans-Bold.svg#OpenSans-Bold') format('svg');
+    font-weight: 700;
+    font-style: normal;
+}
+
+
